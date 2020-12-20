@@ -7,8 +7,16 @@ name: CI
 on:
   push:
     branches: [ main ]
+    paths-ignore:
+    - '.github/**'
+    - 'src/**'
+    - 'README.md'
   pull_request:
     branches: [ main ]
+    paths-ignore:
+    - '.github/**'
+    - 'src/**'
+    - 'README.md'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -29,4 +37,7 @@ jobs:
           ftp-server: ${{ secrets.FTP_SERVER }}/tools.bitfertig.de/bootstrap2tailwind/
           ftp-username: ${{ secrets.FTP_USERNAME }}
           ftp-password: ${{ secrets.FTP_PASSWORD }}
-          
+      - name: curl
+        uses: wei/curl@master
+        with:
+          args: http://tools.bitfertig.de/worker.php

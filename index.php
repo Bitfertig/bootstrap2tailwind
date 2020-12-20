@@ -24,6 +24,24 @@ if ( $example_number == 3 ) {
     </div>
     HTML;
 }
+if ( $example_number == 4 ) {
+    $_POST['bootstrap'] = <<<HTML
+    <form>
+        <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+            </div>
+        </div>
+    </form>
+    HTML;
+}
 
 $bootstrap_str = $_POST['bootstrap'] ?? '';
 
@@ -38,17 +56,19 @@ $tailwind_str = $converter->setContent($bootstrap_str)->convert()->get();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bootstrap to Tailwind</title>
+    <meta name="keywords" content="Bootstrap, Tailwind, CSS, Converter, Generator, transform, convert, playground">
+    <meta name="description" content="Converting Bootstrap to Tailwind CSS.">
 </head>
 <body>
 
     <header style="text-align:center;">
         <h1>Bootstrap to Tailwind</h1>
-        <p>Transform css classes from Bootstrap to Tailwind.</p>
+        <p>Convert css classes from Bootstrap to Tailwind.</p>
     </header>
 
 
     
-    <form method="post" action="?">
+    <form method="post" action="<?= $_SERVER['PHP_SELF'] ?>">
         <div style="display:flex;gap:10px;">
             <div style="flex:1;width:100%;">
                 <h2 style="text-align:center;">Bootstrap</h2>
@@ -57,6 +77,7 @@ $tailwind_str = $converter->setContent($bootstrap_str)->convert()->get();
                     <a href="?example=1">Example 1</a>
                     <a href="?example=2">Example 2</a>
                     <a href="?example=3">Example 3</a>
+                    <a href="?example=4">Example 4</a>
                 </div>
             </div>
             <div style="flex:1;">
